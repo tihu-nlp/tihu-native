@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package tihu;
+
+service Tihu {
+    rpc Speak(SpeakRequest) returns (stream SpeakReply) {}
+    rpc Version(Empty) returns (VersionReply) {}
+}
+
+message Empty {}
+
+message SpeakRequest {
+    string text = 1;
+    
+    enum Voice {
+      MBROLA_MALE = 0;
+      MBROLA_FEMALE = 1;
+      ESPEAK_MALE = 2;
+      ESPEAK_FEMALE = 3;
+    }
+    Voice voice = 2;
+}
+
+message SpeakReply {
+    bytes wave = 1;
+    string tags = 2;
+}
+
+message VersionReply {
+    string version = 1;
+}
