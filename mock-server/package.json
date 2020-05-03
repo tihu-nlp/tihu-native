@@ -7,11 +7,15 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "start:dist": "node dist/index.js",
-    "dev": "nodemon --inspect",
+    "dev": "nodemon --inspect ./src/index.ts",
     "build": "tsc --project tsconfig.build.json",
     "generate": "sh ./scripts/generate.sh",
     "test": "jest",
     "test:watch": "jest --watch"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   },
   "dependencies": {
     "grpc": "^1.24.2"
@@ -22,6 +26,7 @@
     "grpc_tools_node_protoc_ts": "^3.0.0",
     "jest": "^25.5.4",
     "nodemon": "^2.0.3",
+    "ts-jest": "^25.4.0",
     "ts-node": "^8.8.2",
     "typescript": "^3.8.3"
   }
