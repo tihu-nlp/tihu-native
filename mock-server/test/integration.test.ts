@@ -6,6 +6,8 @@ import { Empty, SpeakRequest, SpeakReply } from '../src/generated/tihu_pb'
 
 const OUTPUT_FILE = join(__dirname, 'out', 'sample.wav')
 
+jest.setTimeout(20 * 1000) // 20 seconds
+
 describe('server', () => {
   beforeAll(() => {
     if (existsSync(OUTPUT_FILE)) {
@@ -23,7 +25,7 @@ describe('server', () => {
       expect(err).toBeNull()
       expect(res).toBeDefined()
       const version = res.getVersion()
-      expect(version).toBe('1')
+      expect(version).toBeDefined()
       done()
     })
   })
@@ -31,15 +33,14 @@ describe('server', () => {
   it('calls speak', (done) => {
     const request = new SpeakRequest()
     request.setVoice(SpeakRequest.Voice.MBROLA_FEMALE)
-    request.setText("doesn't matter it's mocked")
+    request.setText('شتر دیدی ندیدی')
 
     const reply = client.speak(request)
 
     const stream = createWriteStream(OUTPUT_FILE)
 
     reply.on('data', (chunk: SpeakReply) => {
-      const asU8 = chunk.getWave_asU8()
-      stream.write(asU8)
+      stream.write(chunk.getWave_asU8())
     })
 
     reply.on('error', (err) => {
