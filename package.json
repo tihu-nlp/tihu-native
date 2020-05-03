@@ -5,7 +5,8 @@
   "scripts": {
     "start": "lerna exec --scope app -- yarn start",
     "start:mock": "lerna exec -- yarn start",
-    "mock-server": "lerna exec --scope mock-server -- yarn start"
+    "mock-server": "lerna exec --scope mock-server -- yarn start",
+    "postinstall": "lerna exec -- yarn"
   },
   "husky": {
     "hooks": {
