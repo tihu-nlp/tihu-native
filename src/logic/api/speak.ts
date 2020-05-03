@@ -8,5 +8,5 @@ export const apiSpeak = (value: string) =>
     // for now simulate fetch
     setTimeout(() => {
       resolve(uri)
-    }, 1000)
+    }, 500)
   })
