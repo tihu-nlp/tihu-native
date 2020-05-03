@@ -8,7 +8,7 @@
     "start": "ts-node src/index.ts",
     "start:dist": "node dist/index.js",
     "dev": "nodemon --inspect",
-    "build": "tsc",
+    "build": "tsc --project tsconfig.build.json",
     "generate": "sh ./scripts/generate.sh",
     "test": "jest",
     "test:watch": "jest --watch"
