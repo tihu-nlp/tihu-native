@@ -1,5 +1,7 @@
 # tihu-native
 
+[![dependencies Status](https://david-dm.org/tihu/tihu-native/status.svg)](https://david-dm.org/tihu/tihu-native) [![devDependencies Status](https://david-dm.org/tihu/tihu-native/dev-status.svg)](https://david-dm.org/tihu/tihu-native?type=dev)
+
 tihu mobile app mono repo
 
 ## Pre-requisites
