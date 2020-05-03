@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useRef } from 'react'
 import { Audio } from 'expo-av'
 import { noop, noopPromise } from '@utils/noop'
 import { apiSpeak } from '@logic/api/speak'
@@ -22,9 +22,9 @@ export const Context = createContext<ContextType>(DEFAULT_VALUE)
 export const Provider: React.FC = ({ children }) => {
   const [input, setInput] = useState('')
   const [lastFetch, setLastFetch] = useState<string | null>(null)
-  const [sound] = useState(new Audio.Sound())
+  const { current: sound } = useRef(new Audio.Sound())
 
-  const speak = async () => {
+  const { current: speak } = useRef(async () => {
     if (!(await sound.getStatusAsync()).isLoaded) {
       const uri = await apiSpeak(input)
       await sound.loadAsync({ uri })
@@ -48,7 +48,7 @@ export const Provider: React.FC = ({ children }) => {
     await sound.setPositionAsync(0)
 
     await sound.playAsync()
-  }
+  })
 
   return (
     <Context.Provider
