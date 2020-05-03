@@ -1,9 +1,10 @@
 import React from 'react'
-import { StatusBar, I18nManager } from 'react-native'
+import { StatusBar } from 'react-native'
 import { Provider } from '@logic/context'
 import { RootView } from '@views/root'
+import { bootstrap } from '@logic/bootstrap'
 
-I18nManager.forceRTL(true)
+bootstrap()
 
 export default function App() {
   return (
