@@ -2,7 +2,18 @@
 
 tihu mobile app mono repo
 
+## Pre-requisites
+
+- NodeJS
+- Yarn
+
 ## Usage
+
+Install dependencies
+
+```sh
+yarn
+```
 
 Run the app using expo
 
@@ -28,13 +39,13 @@ yarn mock-server
 
 React-native app
 
-[README](../blob/master/app/README.md)
+[README](../master/app/README.md)
 
 ### mock-server
 
 Mocked `gRPC` server for testing purposes
 
-[README](../blob/master/mock-server/README.md)
+[README](../master/mock-server/README.md)
 
 ## Todo
 
