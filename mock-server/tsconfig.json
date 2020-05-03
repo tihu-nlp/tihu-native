@@ -6,8 +6,8 @@
     "sourceMap": true,
     "outDir": "./dist",
     "strict": true,
-    "noImplicitAny": false,
-    "strictNullChecks": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     "esModuleInterop": true
   },
   "exclude": ["./node_modules/"]
