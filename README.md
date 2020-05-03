@@ -20,7 +20,7 @@ Mock `gRPC` server to test the app
 
 - [x] Basic functionality with static audio
 - [x] Convert to lerna mono repo
-- [ ] Mocked gRPC server
+- [x] Mocked gRPC server
 - [ ] gRPC client
 - [ ] Get tihu to work with generated client code
 - [ ] Use tihu
