@@ -1,10 +1,11 @@
-import { createWriteStream, existsSync, unlinkSync } from 'fs'
+import { createWriteStream, existsSync, unlinkSync, mkdirSync } from 'fs'
 import { join } from 'path'
 import grpc from 'grpc'
 import { TihuClient } from '../src/generated/tihu_grpc_pb'
 import { Empty, SpeakRequest, SpeakReply } from '../src/generated/tihu_pb'
 
-const OUTPUT_FILE = join(__dirname, 'out', 'sample.wav')
+const OUTPUT_DIR = join(__dirname, 'out')
+const OUTPUT_FILE = join(OUTPUT_DIR, 'sample.wav')
 
 jest.setTimeout(20 * 1000) // 20 seconds
 
@@ -12,6 +13,9 @@ describe('server', () => {
   beforeAll(() => {
     if (existsSync(OUTPUT_FILE)) {
       unlinkSync(OUTPUT_FILE)
+    }
+    if (!existsSync(OUTPUT_DIR)) {
+      mkdirSync(OUTPUT_DIR)
     }
   })
 
