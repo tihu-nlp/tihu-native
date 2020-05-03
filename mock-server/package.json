@@ -1,5 +1,5 @@
 {
-  "name": "tihu-native-mock-server",
+  "name": "mock-server",
   "version": "1.0.0",
   "main": "dist/index.js",
   "license": "MIT",

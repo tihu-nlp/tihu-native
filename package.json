@@ -2,7 +2,11 @@
   "name": "tihu-native",
   "version": "1.0.0",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "start": "lerna exec --scope app -- yarn start",
+    "start:mock": "lerna exec -- yarn start",
+    "mock-server": "lerna exec --scope mock-server -- yarn start"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
