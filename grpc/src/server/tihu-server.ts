@@ -6,14 +6,17 @@ import {
   VersionReply,
   SpeakReply,
   SpeakRequest,
-} from './generated/tihu_pb'
-import { ITihuServer } from './generated/tihu_grpc_pb'
+} from '../generated/tihu_pb'
+import { ITihuServer } from '../generated/tihu_grpc_pb'
+import { log, logCall } from './logging'
 
-const SAMPLE = readFileSync(join(__dirname, '..', 'assets', 'sample.wav'))
+const SAMPLE = readFileSync(join(__dirname, '..', '..', 'assets', 'sample.wav'))
 const AS_ARRAY = new Uint8Array(SAMPLE)
 
 export class TihuServer implements ITihuServer {
   speak: grpc.handleServerStreamingCall<SpeakRequest, SpeakReply> = (call) => {
+    logCall(call)
+
     const reply = new SpeakReply()
     reply.setWave(AS_ARRAY)
     reply.setTags('##__TODO__##')
@@ -26,7 +29,9 @@ export class TihuServer implements ITihuServer {
     })
   }
 
-  version: grpc.handleUnaryCall<Empty, VersionReply> = (_, callback) => {
+  version: grpc.handleUnaryCall<Empty, VersionReply> = (call, callback) => {
+    logCall(call)
+
     const reply = new VersionReply()
     reply.setVersion('1')
     callback(null, reply)

@@ -1,12 +1,15 @@
-# mock-server
+# tihu-native-grpc
 
-Mock implementation of the tihu `gRPC` server for testing purposes
+- NodeJS client code for tihu api
+- Mock implementation of the tihu `gRPC` api for testing purposes
 
 ## Usage
 
 ```sh
 yarn
 yarn start
+# with auto-restart
+yarn dev
 ```
 
 ## Test

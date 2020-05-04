@@ -1,1 +1,1 @@
-mock-server/src/generated/*
+grpc/src/generated/*

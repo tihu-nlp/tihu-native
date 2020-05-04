@@ -32,7 +32,7 @@ yarn start:mock
 Run mock server stand-alone
 
 ```sh
-yarn mock-server
+yarn mock-api
 ```
 
 ## Packages
@@ -43,11 +43,11 @@ React-native app
 
 [README](../master/app/README.md)
 
-### mock-server
+### grpc
 
-Mocked `gRPC` server for testing purposes
+Mocked `gRPC` api for testing purposes
 
-[README](../master/mock-server/README.md)
+[README](../master/grpc/README.md)
 
 ## Todo
 

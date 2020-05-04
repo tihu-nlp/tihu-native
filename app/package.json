@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "tihu-native-app",
   "main": "node_modules/expo/AppEntry.js",
   "version": "0.0.1",
   "scripts": {

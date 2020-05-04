@@ -1,7 +1,8 @@
 import grpc from 'grpc'
-import { ITihuServer } from './generated/tihu_grpc_pb'
-import { TihuService } from './generated/tihu_grpc_pb'
+import { ITihuServer } from '../generated/tihu_grpc_pb'
+import { TihuService } from '../generated/tihu_grpc_pb'
 import { TihuServer } from './tihu-server'
+import { log } from './logging'
 
 const PORT = process.env.PORT || 50051
 const HOST = process.env.HOST || 'localhost'
@@ -14,4 +15,4 @@ server.addService<ITihuServer>(TihuService, new TihuServer())
 server.bind(ADDRESS, grpc.ServerCredentials.createInsecure())
 
 server.start()
-console.log(`Listening on ${ADDRESS}`)
+log(`Listening on ${ADDRESS}`, 'info')

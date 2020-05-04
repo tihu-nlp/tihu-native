@@ -1,13 +1,13 @@
 {
-  "name": "mock-server",
+  "name": "tihu-native-grpc",
   "version": "1.0.0",
   "main": "dist/index.js",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "start:dist": "node dist/index.js",
-    "dev": "nodemon --inspect ./src/index.ts",
+    "start": "ts-node src/server/index.ts",
+    "start:dist": "node dist/server/index.js",
+    "dev": "nodemon --inspect ./src/server/index.ts",
     "build": "tsc --project tsconfig.build.json",
     "generate": "sh ./scripts/generate.sh",
     "test": "jest",
@@ -18,11 +18,15 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "grpc": "^1.24.2"
+    "google-protobuf": "^3.11.4",
+    "grpc": "^1.24.2",
+    "pino": "^6.2.1",
+    "pino-pretty": "^4.0.0"
   },
   "devDependencies": {
     "@types/google-protobuf": "^3.7.2",
     "@types/jest": "^25.2.1",
+    "@types/pino": "^6.0.0",
     "grpc-tools": "^1.8.1",
     "grpc_tools_node_protoc_ts": "^3.0.0",
     "jest": "^25.5.4",

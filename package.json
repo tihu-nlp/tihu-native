@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "lerna exec --scope app -- yarn start",
+    "start": "lerna exec --scope tihu-native-app -- yarn start",
     "start:mock": "lerna exec -- yarn start",
-    "mock-server": "lerna exec --scope mock-server -- yarn start",
+    "mock-api": "lerna exec --scope tihu-native-grpc -- yarn start",
     "postinstall": "lerna exec -- yarn"
   },
   "husky": {
