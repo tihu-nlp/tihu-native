@@ -1,10 +1,8 @@
 import React, { createContext, useState, useRef } from 'react'
 import { Audio } from 'expo-av'
-import * as Crypto from 'expo-crypto'
-import * as FileSystem from 'expo-file-system'
 import { noop, noopPromise } from '@utils/noop'
-import { speak as apiSpeak } from '@logic/api/speak'
-import { config } from '@app/config'
+import { speak as callSpeak } from '@app/logic/api/speak'
+import { getSound, storeSound } from './fs'
 
 type ContextType = {
   input: string
@@ -29,16 +27,12 @@ export const Provider: React.FC = ({ children }) => {
   const speak = async () => {
     const text = input || 'شتر دیدی ندیدی'
 
-    // check if text already fetched before
-    const fileName = await Crypto.digestStringAsync(
-      Crypto.CryptoDigestAlgorithm.SHA256,
-      text
-    )
-    const uri = `${config.fileSystem.downloadPath}/${fileName}`
-    const uriExists = (await FileSystem.getInfoAsync(uri)).exists
+    const { uri, exists } = await getSound(text)
 
-    if (!uriExists) {
-      await apiSpeak(text)
+    if (!exists) {
+      const file = await callSpeak(text)
+      await storeSound(uri, file)
+
       if ((await sound.getStatusAsync()).isLoaded) {
         await sound.unloadAsync()
       }
@@ -51,7 +45,7 @@ export const Provider: React.FC = ({ children }) => {
     // TODO: fix waveheader to set correct header based on audio length
     // this is a bug, the playback never stops
     // probably because the wav header is set to max
-    // so it will keep playing until it the end (which takes forever)
+    // so it will keep playing until it reaches the end (which takes forever)
     await sound.setPositionAsync(0)
 
     await sound.playAsync()

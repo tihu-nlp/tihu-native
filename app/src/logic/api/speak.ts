@@ -1,8 +1,5 @@
-import * as Crypto from 'expo-crypto'
-import * as FileSystem from 'expo-file-system'
 import { SpeakRequest, SpeakReply } from '../../generated/tihu_pb'
 import { client } from './client'
-import { config } from '@app/config'
 
 export const speak = (
   text: string,
@@ -12,13 +9,6 @@ export const speak = (
     const request = new SpeakRequest()
     request.setVoice(voice)
     request.setText(text)
-
-    const fileName = await Crypto.digestStringAsync(
-      Crypto.CryptoDigestAlgorithm.SHA256,
-      text
-    )
-
-    const uri = `${config.fileSystem.downloadPath}/${fileName}`
 
     const call = client.speak(request)
 
@@ -33,9 +23,6 @@ export const speak = (
     })
 
     call.on('end', async () => {
-      await FileSystem.writeAsStringAsync(uri, result, {
-        encoding: 'base64',
-      })
-      resolve(uri)
+      resolve(result)
     })
   })

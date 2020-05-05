@@ -10,7 +10,6 @@ module.exports = function (api) {
           extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
           alias: {
             '@app': './src',
-            '@config': './src/config',
             '@containers': './src/containers',
             '@components': './src/components',
             '@logic': './src/logic',
