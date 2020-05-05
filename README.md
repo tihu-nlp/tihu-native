@@ -11,28 +11,14 @@ tihu mobile app mono repo
 
 ## Usage
 
-Install dependencies
+> The app doesn't point to a working grpc api
+> To test the app deploy the proxy and either the mock api or actual api and point the app to it in `app/src/config/api.ts`. For now [see readmes for more information](#Packages).
+
+Install dependencies and run the app using expo
 
 ```sh
 yarn
-```
-
-Run the app using expo
-
-```sh
 yarn start
-```
-
-Run the app and mock server in parallel
-
-```sh
-yarn start:mock
-```
-
-Run mock server stand-alone
-
-```sh
-yarn mock-api
 ```
 
 ## Packages
@@ -45,30 +31,42 @@ React-native app
 
 ### grpc
 
-Mocked `gRPC` api for testing purposes
+Javascript/typescript client and mock grpc api
 
 [README](../master/grpc/README.md)
+
+### proxy
+
+Envoy proxy to support grpc over http 1.1
+
+[README](../master/proxy/README.md)
 
 ## Todo
 
 - ✔️ Basic functionality with static audio
 - ✔️ Convert to lerna mono repo
 - ✔️ Mocked gRPC server
-- ◻️ gRPC client
-- ◻️ Get tihu to work with generated client code
-- ◻️ Use tihu
+- ✔️ Call gRPC from app
+- ◻️ Environment variables for config in app
+- ◻️ CI/CD for docker images:
+  - ◻️ tihu-api
+  - ◻️ tihu-mock-api
+  - ◻️ tihu-api-proxy
+- ◻️ Docker-compose for mock
+- ◻️ Use actual tihu api
+- ◻️ Docker-compose for actual
+- ◻️ Import js client from grpc package (fix expo error)
 - ◻️ Download file
 - ◻️ Settings (voice, pitch)
 - ◻️ Finish design
 - ◻️ Error flow
-- ◻️ Add rate limiting to tihu server
+- ◻️ Add rate limiting to tihu api or proxy
 - ◻️ Test iOS
 - ◻️ Test iOS tablet
 - ◻️ Test Android
 - ◻️ Test Android tablet
-- ◻️ (Optional) Web view
-- ◻️ CI/CD
-- ◻️ Cleanup, package and release
+- ◻️ Test Web
+- ◻️ Deploy tihu-api and tihu-proxy
 
 ## License
 
