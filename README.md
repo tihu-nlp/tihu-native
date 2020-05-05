@@ -47,7 +47,7 @@ Envoy proxy to support grpc over http 1.1
 - ✔️ Convert to lerna mono repo
 - ✔️ Mocked gRPC server
 - ✔️ Call gRPC from app
-- ◻️ Environment variables for config in app
+- ✔️ Environment variables for config in app
 - ◻️ CI/CD for docker images:
   - ◻️ tihu-api
   - ◻️ tihu-mock-api

@@ -13,6 +13,14 @@ Scan the QR code using the `expo` app on Android or iOS
 
 > Only tested with Android
 
+## Development
+
+Add an `.env` file to the root of this package to overwrite configuration
+
+```
+API_URL=http://your-api-url
+```
+
 ## License
 
 MIT
