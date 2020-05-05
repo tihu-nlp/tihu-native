@@ -12,7 +12,7 @@ tihu mobile app mono repo
 ## Usage
 
 > The app doesn't point to a working grpc api
-> To test the app deploy the proxy and either the mock api or actual api and point the app to it in `app/src/config/api.ts`. For now [see readmes for more information](#Packages).
+> To test the app run the proxy and either the mock api or actual api and point the app to it by setting `API_URL` in `app/.env`. [See readmes on how to deploy api](#Packages).
 
 Install dependencies and run the app using expo
 
