@@ -12,9 +12,13 @@
   "dependencies": {
     "expo": "~37.0.3",
     "expo-av": "~8.1.0",
+    "expo-crypto": "~8.1.0",
     "expo-file-system": "~8.1.0",
     "expo-linear-gradient": "^8.1.0",
     "global": "^4.4.0",
+    "google-protobuf": "^3.12.0-rc.1",
+    "grpc": "^1.24.2",
+    "grpc-web": "^1.0.7",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",

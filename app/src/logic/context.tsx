@@ -1,7 +1,10 @@
 import React, { createContext, useState, useRef } from 'react'
 import { Audio } from 'expo-av'
+import * as Crypto from 'expo-crypto'
+import * as FileSystem from 'expo-file-system'
 import { noop, noopPromise } from '@utils/noop'
-import { apiSpeak } from '@logic/api/speak'
+import { speak as apiSpeak } from '@logic/api/speak'
+import { fs } from '@config/fs'
 
 type ContextType = {
   input: string
@@ -21,23 +24,27 @@ export const Context = createContext<ContextType>(DEFAULT_VALUE)
 
 export const Provider: React.FC = ({ children }) => {
   const [input, setInput] = useState('')
-  const [lastFetch, setLastFetch] = useState<string | null>(null)
   const { current: sound } = useRef(new Audio.Sound())
 
-  const { current: speak } = useRef(async () => {
-    if (!(await sound.getStatusAsync()).isLoaded) {
-      const uri = await apiSpeak(input)
-      await sound.loadAsync({ uri })
-    }
+  const speak = async () => {
+    const text = input || 'شتر دیدی ندیدی'
 
-    // TEMP: Always load
-    // if (input !== lastFetch) {
-    if (true) {
-      setLastFetch(input)
-      const uri = await apiSpeak(input)
+    // check if text already fetched before
+    const fileName = await Crypto.digestStringAsync(
+      Crypto.CryptoDigestAlgorithm.SHA256,
+      text
+    )
+    const uri = `${fs.downloadPath}/${fileName}`
+    const uriExists = (await FileSystem.getInfoAsync(uri)).exists
+
+    if (!uriExists) {
+      await apiSpeak(text)
       if ((await sound.getStatusAsync()).isLoaded) {
         await sound.unloadAsync()
       }
+    }
+
+    if (!(await sound.getStatusAsync()).isLoaded) {
       await sound.loadAsync({ uri })
     }
 
@@ -48,7 +55,7 @@ export const Provider: React.FC = ({ children }) => {
     await sound.setPositionAsync(0)
 
     await sound.playAsync()
-  })
+  }
 
   return (
     <Context.Provider
