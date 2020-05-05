@@ -1,5 +1,3 @@
-import { readFileSync } from 'fs'
-import { join } from 'path'
 import grpc from 'grpc'
 import {
   Empty,
@@ -8,18 +6,25 @@ import {
   SpeakRequest,
 } from '../generated/tihu_pb'
 import { ITihuServer } from '../generated/tihu_grpc_pb'
-import { log, logCall } from './logging'
+import { logCall } from './logging'
+import { loadAsset } from './utils'
 
-const SAMPLE = readFileSync(join(__dirname, '..', '..', 'assets', 'sample.wav'))
-const AS_ARRAY = new Uint8Array(SAMPLE)
+const SAMPLE_1 = loadAsset('sample.wav')
+const SAMPLE_2 = loadAsset('sample2.wav')
+
+let state = false
 
 export class TihuServer implements ITihuServer {
   speak: grpc.handleServerStreamingCall<SpeakRequest, SpeakReply> = (call) => {
     logCall(call)
 
     const reply = new SpeakReply()
-    reply.setWave(AS_ARRAY)
     reply.setTags('##__TODO__##')
+
+    const wave = state ? SAMPLE_2 : SAMPLE_1
+    state = !state
+
+    reply.setWave(wave)
 
     call.write(reply, (err) => {
       if (err) {
