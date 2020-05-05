@@ -44,6 +44,7 @@ describe('server', () => {
     const stream = createWriteStream(OUTPUT_FILE)
 
     reply.on('data', (chunk: SpeakReply) => {
+      expect(chunk).toBeDefined()
       stream.write(chunk.getWave_asU8())
     })
 
@@ -53,6 +54,7 @@ describe('server', () => {
     })
 
     reply.on('end', () => {
+      expect(existsSync(OUTPUT_FILE)).toBe(true)
       done()
     })
   })

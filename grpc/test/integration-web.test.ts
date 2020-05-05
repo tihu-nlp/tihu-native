@@ -26,6 +26,7 @@ describe('integration-web', () => {
     let result = ''
 
     call.on('data', (chunk: SpeakReply) => {
+      expect(chunk).toBeDefined()
       result += chunk.getWave_asB64()
     })
 
@@ -35,7 +36,7 @@ describe('integration-web', () => {
     })
 
     call.on('end', async () => {
-      expect(result).toBeDefined()
+      expect(result.length).toBeGreaterThan(0)
       done()
     })
   })
