@@ -23,12 +23,14 @@
     "pino": "^6.2.1",
     "pino-pretty": "^4.0.0"
   },
+  "optionalDependencies": {
+    "grpc-tools": "^1.8.1",
+    "grpc_tools_node_protoc_ts": "^3.0.0"
+  },
   "devDependencies": {
     "@types/google-protobuf": "^3.7.2",
     "@types/jest": "^25.2.1",
     "@types/pino": "^6.0.0",
-    "grpc-tools": "^1.8.1",
-    "grpc_tools_node_protoc_ts": "^3.0.0",
     "jest": "^25.5.4",
     "nodemon": "^2.0.3",
     "ts-jest": "^25.4.0",
