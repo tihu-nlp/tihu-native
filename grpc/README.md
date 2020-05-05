@@ -1,4 +1,4 @@
-# tihu-native-grpc
+# tihu-grpc-js
 
 - NodeJS client code for tihu api
 - Mock implementation of the tihu `gRPC` api for testing purposes
