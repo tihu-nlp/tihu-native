@@ -1,4 +1,4 @@
-FROM node:stretch as builder
+FROM node:14-buster as builder
 
 RUN mkdir /var/app
 
@@ -13,7 +13,7 @@ COPY . /var/app
 
 RUN yarn build
 
-FROM node:stretch
+FROM node:14-buster
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
