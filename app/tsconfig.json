@@ -11,7 +11,7 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
-      "@config/*": ["src/config/*"],
+      "@app/*": ["src/*"],
       "@containers/*": ["src/containers/*"],
       "@components/*": ["src/components/*"],
       "@logic/*": ["src/logic/*"],

@@ -1,4 +1,4 @@
 import { TihuClient } from '../../generated/TihuServiceClientPb'
-import { api } from '@config/api'
+import { config } from '@app/config'
 
-export const client = new TihuClient(api.url, null, null)
+export const client = new TihuClient(config.api.url, null, null)

@@ -4,7 +4,7 @@ import * as Crypto from 'expo-crypto'
 import * as FileSystem from 'expo-file-system'
 import { noop, noopPromise } from '@utils/noop'
 import { speak as apiSpeak } from '@logic/api/speak'
-import { fs } from '@config/fs'
+import { config } from '@app/config'
 
 type ContextType = {
   input: string
@@ -34,7 +34,7 @@ export const Provider: React.FC = ({ children }) => {
       Crypto.CryptoDigestAlgorithm.SHA256,
       text
     )
-    const uri = `${fs.downloadPath}/${fileName}`
+    const uri = `${config.fileSystem.downloadPath}/${fileName}`
     const uriExists = (await FileSystem.getInfoAsync(uri)).exists
 
     if (!uriExists) {

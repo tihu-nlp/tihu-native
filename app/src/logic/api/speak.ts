@@ -2,7 +2,7 @@ import * as Crypto from 'expo-crypto'
 import * as FileSystem from 'expo-file-system'
 import { SpeakRequest, SpeakReply } from '../../generated/tihu_pb'
 import { client } from './client'
-import { fs } from '@config/fs'
+import { config } from '@app/config'
 
 export const speak = (
   text: string,
@@ -18,7 +18,7 @@ export const speak = (
       text
     )
 
-    const uri = `${fs.downloadPath}/${fileName}`
+    const uri = `${config.fileSystem.downloadPath}/${fileName}`
 
     const call = client.speak(request)
 

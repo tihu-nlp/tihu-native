@@ -3,7 +3,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Header } from '@containers/header/header'
 import { Main } from '@containers/main/main'
 import { grayscale } from '@utils/grayscale'
-import { style } from '@config/style'
+import { config } from '@app/config'
 
 export const RootView: React.FC = () => {
   return (
@@ -14,8 +14,8 @@ export const RootView: React.FC = () => {
         left: 0,
         right: 0,
         top: 0,
-        paddingHorizontal: style.viewPadding,
-        paddingVertical: style.viewPadding,
+        paddingHorizontal: config.style.viewPadding,
+        paddingVertical: config.style.viewPadding,
         width: 'auto',
         flex: 1,
         alignItems: 'center',
