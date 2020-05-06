@@ -21,7 +21,7 @@ jobs:
         id: filesChanged
         # TODO: do this better
         run: |
-          echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -c proxy )"
+          echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }}..${{ github.sha }} | grep -c '^proxy' )"
           echo "::set-output name=count::$( if [ -z ${{ steps.filesChanged.outputs.grepValue }} ]; then echo 0; else echo ${{ steps.filesChanged.outputs.grepValue }}; fi )"
 
       - name: Build and push proxy
@@ -45,7 +45,7 @@ jobs:
       - name: Get change count for mock
         id: filesChanged
         run: |
-          echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -c grpc )"
+          echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }}..${{ github.sha }} | grep -c '^grpc' )"
           echo "::set-output name=count::$( if [ -z ${{ steps.filesChanged.outputs.grepValue }} ]; then echo 0; else echo ${{ steps.filesChanged.outputs.grepValue }}; fi )"
 
       - name: Build and push proxy
