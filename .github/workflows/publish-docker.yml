@@ -1,0 +1,60 @@
+name: build-docker-images
+
+on:
+  push:
+    branches:
+      - master
+  watch:
+    types: [started]
+
+# TODO: create generic job for build jobs
+jobs:
+  build_proxy:
+    name: Build proxy image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get change count for proxy
+        id: filesChanged
+        # TODO: do this better
+        run: |
+          echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -c proxy )"
+          echo "::set-output name=count::$( if [ -z ${{ steps.filesChanged.outputs.grepValue }} ]; then echo 0; else echo ${{ steps.filesChanged.outputs.grepValue }}; fi )"
+
+      - name: Build and push proxy
+        if: steps.filesChanged.outputs.count > 0 || github.actor == 'shotor'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.docker_hub_user }}
+          password: ${{ secrets.docker_hub_key }}
+          repository: tihunlp/tihu-proxy
+          tag_with_ref: true
+          dockerfile: proxy/Dockerfile
+          path: ${{ github.workspace }}/proxy
+
+  build_mock_api:
+    name: Build mock api image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get change count for mock
+        id: filesChanged
+        run: |
+          echo "::set-output name=grepValue::$( git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -c grpc )"
+          echo "::set-output name=count::$( if [ -z ${{ steps.filesChanged.outputs.grepValue }} ]; then echo 0; else echo ${{ steps.filesChanged.outputs.grepValue }}; fi )"
+
+      - name: Build and push proxy
+        if: steps.filesChanged.outputs.count > 0 || github.actor == 'shotor'
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.docker_hub_user }}
+          password: ${{ secrets.docker_hub_key }}
+          repository: tihunlp/tihu-mock-api
+          tag_with_ref: true
+          dockerfile: grpc/Dockerfile
+          path: ${{ github.workspace }}/grpc

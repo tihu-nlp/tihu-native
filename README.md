@@ -50,8 +50,8 @@ Envoy proxy to support grpc over http 1.1
 - ✔️ Environment variables for config in app
 - ◻️ CI/CD for docker images:
   - ◻️ tihu-api
-  - ◻️ tihu-mock-api
-  - ◻️ tihu-api-proxy
+  - ✔️ tihu-mock-api
+  - ✔️ tihu-api-proxy
 - ◻️ Docker-compose for mock
 - ◻️ Use actual tihu api
 - ◻️ Docker-compose for actual
