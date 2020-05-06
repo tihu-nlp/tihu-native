@@ -2,6 +2,8 @@
 
 [![dependencies Status](https://david-dm.org/tihu/tihu-native/status.svg)](https://david-dm.org/tihu/tihu-native) [![devDependencies Status](https://david-dm.org/tihu/tihu-native/dev-status.svg)](https://david-dm.org/tihu/tihu-native?type=dev)
 
+![.github/workflows/publish-docker.yml](https://github.com/tihu-nlp/tihu-native/workflows/.github/workflows/publish-docker.yml/badge.svg)
+
 tihu mobile app mono repo
 
 ## Pre-requisites
